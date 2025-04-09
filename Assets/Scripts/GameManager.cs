@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int gold = 0;
+    static public GameManager instance;
+    private int gold = 100;
     private int health = 10;
 
-    public TextMeshPro goldUI;
-    public TextMeshPro healthUI;
+    public TextMeshProUGUI goldUI;
+    public TextMeshProUGUI healthUI;
+
+    private void Awake()
+    {
+        instance = this;
+        UpdateGold();
+        UpdateHealth();
+    }
 
     public void AddGold(int x)
     {
@@ -51,6 +59,6 @@ public class GameManager : MonoBehaviour
 
     private void Lose()
     {
-        throw new NotImplementedException();
+        Debug.Log("You lost!");
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     public Transform[] waypoints;
     public float spawnRate = 2f;
     public float timeBetweenWaves = 5f;
@@ -54,10 +54,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject enemyGO = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        EnemyMovement enemyScript = enemyGO.GetComponent<EnemyMovement>();
+        GameObject enemyGO = Instantiate(enemyPrefabs[0], transform.position, Quaternion.identity);
+        IEnemy enemyScript = enemyGO.GetComponent<IEnemy>();
 
-        enemyScript.SetWaypoints(waypoints);
+        enemyScript.Init(waypoints, waveNumber);
         enemiesSpawnedInWave++;
     }
 

@@ -75,7 +75,7 @@ public class TowerController : MonoBehaviour
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectileScript = projectileGO.GetComponent<Projectile>();
 
-        projectileScript.Seek(currentTarget);
+        projectileScript.Init(currentTarget, 0);
     }
 
     void OnDrawGizmos()
